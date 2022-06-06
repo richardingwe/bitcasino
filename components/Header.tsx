@@ -1,10 +1,10 @@
-import React from "react";
+import Image from "next/image";
 
 const Header = () => {
 	return (
 		<nav>
 			<div>
-				<img src='/assets/logo.svg' alt='logo' />
+				<Image src='/assets/logo.svg' width={200} height={40} />
 			</div>
 		</nav>
 	);
