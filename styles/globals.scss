@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	font-family: "IBM Plex Sans", sans-serif;
+	overflow-x: hidden;
+}
+
+.main {
+	position: relative;
+
+	background-image: url("/assets/figure.png"); /* The image used */
+	background-position: center bottom; /* Center the image */
+	background-repeat: no-repeat; /* Do not repeat the image */
+	background-size: 30%; /* Resize the background image to cover the entire container */
+
+	&::after {
+		content: "";
+		position: absolute;
+		right: -490px;
+		top: 0;
+		width: 900px;
+		height: 650px;
+		background-image: url("/assets/bg.png");
+		background-repeat: no-repeat; /* Do not repeat the image */
+		background-size: cover;
+	}
+}
