@@ -6,6 +6,7 @@ import { useLazyQuery, gql } from "@apollo/client";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Image from "next/image";
 
 const CssTextField = styled(TextField)({
 	"& label.Mui-focused": {
@@ -142,7 +143,12 @@ const Hero = () => {
 								key={i}
 								className='flex items-center justify-between w-[280px] py-3 border-b-[1px] border-[#9484a4]'>
 								<div className='flex items-center gap-x-8'>
-									<img src='/assets/icon.svg' alt='trophy' />
+									<Image
+										src='/assets/icon.svg'
+										alt='trophy'
+										width={40}
+										height={50}
+									/>
 									<div className='flex flex-col gap-2'>
 										<div className='text-white capitalize'>{coin.coinCode}</div>
 										<div className='text-[#9484a4] text-[13px]'>
