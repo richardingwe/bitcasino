@@ -7,12 +7,12 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<div className='bg-primary relative main overflow-hidden'>
-				<div className='container mx-auto pt-8 pb-6 lg:px-16'>
+				<div className='container pt-8 pb-6'>
 					<Header />
 					<Hero />
 				</div>
 			</div>
-			<div className='container mx-auto py-6 lg:px-32 bg-white'>
+			<div className='container py-6 bg-white'>
 				<Footer />
 			</div>
 		</>

@@ -56,7 +56,7 @@ const Hero = () => {
 	};
 
 	return (
-		<main className='mt-12 mb-9'>
+		<main className='mt-10 mb-9'>
 			<section>
 				<div className='w-full flex items-center justify-between'>
 					<div className='flex-1'>
