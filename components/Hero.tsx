@@ -121,11 +121,12 @@ const Hero = () => {
 										</div>
 									</div>
 								</div>
-								<div
+								<button
+									title={`delete ${coin.coinCode}`}
 									className='text-white cursor-pointer'
 									onClick={() => deleteCoin(coin.coinCode)}>
 									<CloseIcon color='inherit' style={{ height: "15px" }} />
-								</div>
+								</button>
 							</li>
 						))}
 				</ul>
