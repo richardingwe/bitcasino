@@ -21,5 +21,3 @@ describe("search", () => {
 			.click({ force: true });
 	});
 });
-
-export {}; // 👈️ if you don't have anything else to export
