@@ -4,10 +4,11 @@ import { useLazyQuery } from "@apollo/client";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Image from "next/image";
 import { PRICE } from "../queries/PRICE";
 import { Input } from "../components/Input";
 import { CoinDataType } from "../types/CoinDataType";
+import { v4 as uuidv4 } from "uuid";
+import Image from "next/image";
 
 const Hero = () => {
 	const [coins, setCoins] = useState<CoinDataType[]>([]);
@@ -20,7 +21,7 @@ const Hero = () => {
 
 	const getCoin = (event: React.MouseEvent<HTMLElement>) => {
 		event.preventDefault();
-		setCoinCode((state) => (state = code));
+		setCoinCode((state: string) => (state = code));
 		fetchCoin();
 	};
 
@@ -28,7 +29,9 @@ const Hero = () => {
 		variables: { coinCode },
 		fetchPolicy: "network-only",
 		onCompleted: (data) => {
-			let coinExist = coins.find((coin) => coin.coinCode === coinCode);
+			let coinExist = coins.find(
+				(coin: CoinDataType) => coin.coinCode === coinCode
+			);
 			let notFound = data.markets.length === 0;
 
 			if (coinExist) {
@@ -40,7 +43,8 @@ const Hero = () => {
 
 			if (data && !notFound) {
 				setCoins(
-					(state) => (state = [{ ...data.markets[0], coinCode }, ...state])
+					(state: CoinDataType[]) =>
+						(state = [{ ...data.markets[0], coinCode }, ...state])
 				);
 				setCode("");
 			}
@@ -51,8 +55,10 @@ const Hero = () => {
 	});
 
 	const deleteCoin = (coinCode: String) => {
-		let filteredCoins = coins.filter((coin) => coin.coinCode !== coinCode);
-		setCoins((state) => (state = [...filteredCoins]));
+		let filteredCoins = coins.filter(
+			(coin: CoinDataType) => coin.coinCode !== coinCode
+		);
+		setCoins((state: CoinDataType[]) => (state = [...filteredCoins]));
 	};
 
 	return (
@@ -96,9 +102,9 @@ const Hero = () => {
 
 				<div className='mt-[32px] z-[20]'>
 					{coins &&
-						coins.map((coin, i) => (
+						coins.map((coin: CoinDataType) => (
 							<div
-								key={i}
+								key={uuidv4()}
 								className='flex items-center justify-between w-full lg:w-[280px] py-3 border-b-[1px] border-[#9484a4]'>
 								<div className='flex items-center gap-x-8'>
 									<Image
