@@ -40,7 +40,7 @@ const Hero = () => {
 
 			if (data && !notFound) {
 				setCoins(
-					(state) => (state = [...state, { ...data.markets[0], coinCode }])
+					(state) => (state = [{ ...data.markets[0], coinCode }, ...state])
 				);
 				setCode("");
 			}
