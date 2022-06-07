@@ -1,59 +1,18 @@
 import React, { useEffect, useState } from "react";
-import TextField from "@mui/material/TextField";
-import { styled } from "@mui/material/styles";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLazyQuery, gql } from "@apollo/client";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
-
-const CssTextField = styled(TextField)({
-	"& label.Mui-focused": {
-		color: "black",
-	},
-	"& .MuiInput-underline:after": {
-		borderBottomColor: "black",
-	},
-	"& .MuiOutlinedInput-root": {
-		"& fieldset": {
-			borderColor: "black",
-		},
-		"&:hover fieldset": {
-			borderColor: "black",
-		},
-		"&.Mui-focused fieldset": {
-			borderColor: "black",
-		},
-	},
-});
-
-const PRICE = gql`
-	query price($coinCode: String!) {
-		markets(
-			filter: { baseSymbol: { _eq: $coinCode }, quoteSymbol: { _eq: "EUR" } }
-		) {
-			marketSymbol
-			ticker {
-				lastPrice
-			}
-		}
-	}
-`;
-
-type CoinData = {
-	coinCode: String;
-	marketSymbol: String;
-	ticker: {
-		lastPrice: String;
-		__typename: String;
-	};
-};
+import { PRICE } from "../queries/PRICE";
+import { Input } from "../components/Input";
+import { CoinDataType } from "../types/CoinDataType";
 
 const Hero = () => {
-	const [coins, setCoins] = useState<CoinData[]>([]);
+	const [coins, setCoins] = useState<CoinDataType[]>([]);
 	const [coinCode, setCoinCode] = useState<String>("");
-	const [code, setCode] = useState("");
+	const [code, setCode] = useState<String>("");
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setCode(event.target.value.toUpperCase());
@@ -65,7 +24,7 @@ const Hero = () => {
 		fetchCoin();
 	};
 
-	const [fetchCoin, { loading, error }] = useLazyQuery(PRICE, {
+	const [fetchCoin, { loading }] = useLazyQuery(PRICE, {
 		variables: { coinCode },
 		fetchPolicy: "network-only",
 		onCompleted: (data) => {
@@ -85,6 +44,9 @@ const Hero = () => {
 				);
 				setCode("");
 			}
+		},
+		onError: (error) => {
+			toast.error(error.message);
 		},
 	});
 
@@ -112,7 +74,7 @@ const Hero = () => {
 					<div className='flex-1 flex justify-end z-10'>
 						<div className='w-[400px] bg-white px-10 py-8 flex flex-col rounded'>
 							<form className='flex flex-col'>
-								<CssTextField
+								<Input
 									label='CRYPTOCURRENCY CODE'
 									variant='outlined'
 									size='small'
