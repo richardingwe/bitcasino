@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { useLazyQuery, gql } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import ClipLoader from "react-spinners/ClipLoader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -56,23 +56,19 @@ const Hero = () => {
 	};
 
 	return (
-		<main className='mt-10 mb-9'>
+		<main className='my-4 lg:mt-10 lg:mb-9'>
 			<section>
-				<div className='w-full flex items-center justify-between'>
-					<div className='flex-1'>
-						<h1 className='lg:text-[42px] leading-[52px] font-medium text-white mb-5'>
-							Now you can track <br />
-							all your cryptos here!
+				<div className='w-full flex flex-col lg:flex-row flex-wrap gap-y-6 items-center justify-between'>
+					<div className='flex-1 z-10'>
+						<h1 className='text-[36px] lg:text-[42px] lg:w-[390px] lg:leading-[52px] font-medium text-white mb-5'>
+							Now you can track all your cryptos here!
 						</h1>
-						<p className='text-[20px] leading-[26px] tracking-wide text-[#9484a4]'>
-							Just enter the <br />
-							cryptocurrency code on the
-							<br />
-							form to the right.
+						<p className='text-[20px] lg:w-[270px] leading-[26px] tracking-wide text-[#9484a4]'>
+							Just enter the cryptocurrency code on the form to the right.
 						</p>
 					</div>
-					<div className='flex-1 flex justify-end z-10'>
-						<div className='w-[400px] bg-white px-10 py-8 flex flex-col rounded'>
+					<div className='flex-1 w-full flex md:justify-end z-10'>
+						<div className='w-full lg:w-[60%] bg-white p-6 lg:px-10 lg:py-8 flex flex-col rounded'>
 							<form className='flex flex-col'>
 								<Input
 									label='CRYPTOCURRENCY CODE'
@@ -103,7 +99,7 @@ const Hero = () => {
 						coins.map((coin, i) => (
 							<div
 								key={i}
-								className='flex items-center justify-between w-[280px] py-3 border-b-[1px] border-[#9484a4]'>
+								className='flex items-center justify-between w-full lg:w-[280px] py-3 border-b-[1px] border-[#9484a4]'>
 								<div className='flex items-center gap-x-8'>
 									<Image
 										src='/assets/icon.svg'

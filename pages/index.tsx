@@ -7,7 +7,7 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<div className='bg-primary relative main overflow-hidden'>
-				<div className='container pt-8 pb-6'>
+				<div className='container py-5 lg:pt-8 lg:pb-6'>
 					<Header />
 					<Hero />
 				</div>
