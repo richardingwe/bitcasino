@@ -21,7 +21,7 @@ const Hero = () => {
 
 	const getCoin = (event: React.MouseEvent<HTMLElement>) => {
 		event.preventDefault();
-		setCoinCode((state: string) => (state = code));
+		setCoinCode((state: String) => (state = code));
 		fetchCoin();
 	};
 
