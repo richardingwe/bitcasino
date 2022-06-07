@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import Image from "next/image";
+import { toast, ToastContainer } from "react-toastify";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLazyQuery } from "@apollo/client";
 import ClipLoader from "react-spinners/ClipLoader";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PRICE } from "../queries/PRICE";
 import { Input } from "../components/Input";
 import { CoinDataType } from "../types/CoinDataType";
 import { v4 as uuidv4 } from "uuid";
-import Image from "next/image";
 
 const Hero = () => {
 	const [coins, setCoins] = useState<CoinDataType[]>([]);
