@@ -1,8 +1,8 @@
 export type CoinDataType = {
-	coinCode: String;
-	marketSymbol: String;
+	coinCode: string;
+	marketSymbol: string;
 	ticker: {
-		lastPrice: String;
-		__typename: String;
+		lastPrice: string;
+		__typename: string;
 	};
 };

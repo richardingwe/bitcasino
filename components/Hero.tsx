@@ -12,8 +12,8 @@ import { v4 as uuidv4 } from "uuid";
 
 const Hero = () => {
 	const [coins, setCoins] = useState<CoinDataType[]>([]);
-	const [coinCode, setCoinCode] = useState<String>("");
-	const [code, setCode] = useState<String>("");
+	const [coinCode, setCoinCode] = useState<string>("");
+	const [code, setCode] = useState<string>("");
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setCode(event.target.value.toUpperCase());
@@ -21,7 +21,7 @@ const Hero = () => {
 
 	const getCoin = (event: React.MouseEvent<HTMLElement>) => {
 		event.preventDefault();
-		setCoinCode((state: String) => (state = code));
+		setCoinCode((state: string) => (state = code));
 		fetchCoin();
 	};
 
@@ -54,7 +54,7 @@ const Hero = () => {
 		},
 	});
 
-	const deleteCoin = (coinCode: String) => {
+	const deleteCoin = (coinCode: string) => {
 		let filteredCoins = coins.filter(
 			(coin: CoinDataType) => coin.coinCode !== coinCode
 		);
@@ -100,10 +100,11 @@ const Hero = () => {
 					</div>
 				</div>
 
-				<div className='mt-[32px] z-[20]'>
+				<ul className='mt-[32px] z-[20]'>
 					{coins &&
 						coins.map((coin: CoinDataType) => (
-							<div
+							<li
+								title={coin.coinCode}
 								key={uuidv4()}
 								className='flex items-center justify-between w-full lg:w-[280px] py-3 border-b-[1px] border-[#9484a4]'>
 								<div className='flex items-center gap-x-8'>
@@ -125,9 +126,9 @@ const Hero = () => {
 									onClick={() => deleteCoin(coin.coinCode)}>
 									<CloseIcon color='inherit' style={{ height: "15px" }} />
 								</div>
-							</div>
+							</li>
 						))}
-				</div>
+				</ul>
 			</section>
 			<ToastContainer />
 		</main>
