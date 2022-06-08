@@ -19,7 +19,7 @@ const ListItem = ({ coin, deleteCoin }: ListItemProps) => {
 					</div>
 				</div>
 			</div>
-			<Button coin={coin} deleteCoin={deleteCoin} />
+			<Button coin={coin} onClick={deleteCoin} />
 		</li>
 	);
 };
