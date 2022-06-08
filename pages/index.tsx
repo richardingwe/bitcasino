@@ -2,6 +2,8 @@ import type { NextPage } from "next";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home: NextPage = () => {
 	return (
@@ -15,6 +17,7 @@ const Home: NextPage = () => {
 			<div className='container py-6 bg-white'>
 				<Footer />
 			</div>
+			<ToastContainer />
 		</>
 	);
 };

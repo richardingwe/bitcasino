@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { v4 as uuidv4 } from "uuid";
 import { ListItemProps } from "../types/ListItemProps";
-import Button from "./Button";
+import CloseButton from "./CloseButton";
 
 const ListItem = ({ coin, deleteCoin }: ListItemProps) => {
 	return (
@@ -19,7 +19,7 @@ const ListItem = ({ coin, deleteCoin }: ListItemProps) => {
 					</div>
 				</div>
 			</div>
-			<Button coin={coin} onClick={deleteCoin} />
+			<CloseButton coin={coin} onClick={deleteCoin} />
 		</li>
 	);
 };

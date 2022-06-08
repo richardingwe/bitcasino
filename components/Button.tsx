@@ -1,13 +1,14 @@
-import CloseIcon from "@mui/icons-material/Close";
+import ClipLoader from "react-spinners/ClipLoader";
 import { ButtonProps } from "../types/ButtonProps";
 
-const Button: React.FC<ButtonProps> = ({ coin, onClick }) => {
+const Button: React.FC<ButtonProps> = ({ code, loading, onClick }) => {
 	return (
 		<button
-			title={`delete ${coin.coinCode}`}
-			className='text-white cursor-pointer'
-			onClick={() => onClick(coin.coinCode)}>
-			<CloseIcon color='inherit' style={{ height: "15px" }} />
+			disabled={!code || loading}
+			onClick={onClick}
+			className='disabled:bg-[#fd4c24bc] disabled:cursor-not-allowed border-0 outline-none bg-[#fd4b24] p-[10px] text-white rounded-[20px] text-sm mb-10 flex items-center justify-center'>
+			<ClipLoader color='#fff' loading={loading} size={20} />
+			{!loading && "Add"}
 		</button>
 	);
 };
