@@ -21,3 +21,5 @@ describe("search", () => {
 			.click({ force: true });
 	});
 });
+
+export {};
