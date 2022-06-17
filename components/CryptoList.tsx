@@ -5,10 +5,9 @@ import ListItem from "./ListItem";
 const CryptoList = ({ coins, deleteCoin }: CryptoListProps) => {
 	return (
 		<ul className='mt-[32px] z-[20]'>
-			{coins &&
-				coins.map((coin: CoinDataType) => (
-					<ListItem coin={coin} deleteCoin={deleteCoin} />
-				))}
+			{coins?.map((coin: CoinDataType) => (
+				<ListItem coin={coin} key={coin.coinCode} deleteCoin={deleteCoin} />
+			))}
 		</ul>
 	);
 };

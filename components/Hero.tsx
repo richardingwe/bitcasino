@@ -1,62 +1,26 @@
-import { useState } from "react";
-import { toast } from "react-toastify";
-import { useLazyQuery } from "@apollo/client";
-import { PRICE } from "../queries/PRICE";
-import { CoinDataType } from "../types/CoinDataType";
+import { useEffect, useState } from "react";
 import CryptoList from "./CryptoList";
 import Form from "./Form";
 import HeadLine from "./HeadLine";
+import useCoins from "../hooks/useCoins";
 
 const Hero = () => {
-	const [coins, setCoins] = useState<CoinDataType[]>([]);
-	const [coinCode, setCoinCode] = useState<string>("");
 	const [code, setCode] = useState<string>("");
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setCode(event.target.value.toUpperCase());
 	};
 
-	const getCoin = (event: React.MouseEvent<HTMLElement>) => {
+	const handleGetCoin = async (event: React.MouseEvent<HTMLElement>) => {
 		event.preventDefault();
-		setCoinCode((state: string) => (state = code));
-		fetchCoin();
+		getCoin(code);
 	};
 
-	const [fetchCoin, { loading }] = useLazyQuery(PRICE, {
-		variables: { coinCode },
-		fetchPolicy: "network-only",
-		onCompleted: (data) => {
-			let coinExist = coins.find(
-				(coin: CoinDataType) => coin.coinCode === coinCode
-			);
-			let notFound = data.markets.length === 0;
+	const { deleteCoin, getCoin, loading, coins, isSuccess } = useCoins();
 
-			if (coinExist) {
-				toast.error("Coin already exist!");
-				return;
-			} else if (notFound) {
-				toast.error("Coin not found!");
-			}
-
-			if (data && !notFound) {
-				setCoins(
-					(state: CoinDataType[]) =>
-						(state = [{ ...data.markets[0], coinCode }, ...state])
-				);
-				setCode("");
-			}
-		},
-		onError: (error) => {
-			toast.error(error.message);
-		},
-	});
-
-	const deleteCoin = (coinCode: string) => {
-		let filteredCoins = coins.filter(
-			(coin: CoinDataType) => coin.coinCode !== coinCode
-		);
-		setCoins((state: CoinDataType[]) => (state = [...filteredCoins]));
-	};
+	useEffect(() => {
+		if (isSuccess) setCode("");
+	}, [isSuccess]);
 
 	return (
 		<main className='my-4 lg:mt-10 lg:mb-9'>
@@ -64,7 +28,7 @@ const Hero = () => {
 				<div className='w-full flex flex-col lg:flex-row flex-wrap gap-y-6 items-center justify-between'>
 					<HeadLine />
 					<Form
-						getCoin={getCoin}
+						getCoin={handleGetCoin}
 						loading={loading}
 						code={code}
 						handleChange={handleChange}
