@@ -13,7 +13,7 @@ const Form = ({ code, loading, getCoin, handleChange }: FormProps) => {
 	return (
 		<div className='flex-1 w-full flex md:justify-end z-10'>
 			<div className='w-full lg:w-[60%] bg-white p-6 lg:px-10 lg:py-8 flex flex-col rounded'>
-				<form className='flex flex-col'>
+				<form aria-label='add coin form' className='flex flex-col'>
 					<Input
 						label='CRYPTOCURRENCY CODE'
 						variant='outlined'
@@ -23,7 +23,7 @@ const Form = ({ code, loading, getCoin, handleChange }: FormProps) => {
 						value={code}
 						onChange={handleChange}
 					/>
-					<Button code={code} loading={loading} onClick={getCoin} />
+					<Button label='Add' code={code} loading={loading} onClick={getCoin} />
 				</form>
 				<p className='text-sm text-gray-400 text-center tracking-[0.5px]'>
 					Use of this service is subject to terms and conditions.

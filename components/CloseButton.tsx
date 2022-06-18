@@ -4,6 +4,7 @@ import { CloseButtonProps } from "../types/ButtonProps";
 const CloseButton: React.FC<CloseButtonProps> = ({ coin, onClick }) => {
 	return (
 		<button
+			type='button'
 			title={`delete ${coin.coinCode}`}
 			className='text-white cursor-pointer'
 			onClick={() => onClick(coin.coinCode)}>

@@ -9,8 +9,8 @@ export default function useCoins() {
 	const [coinCode, setCoinCode] = useState<string>("");
 	const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
-	const getCoin = (code: string) => {
-		setCoinCode((state: string) => (state = code));
+	const getCoin = (coinCode: string) => {
+		setCoinCode((state: string) => (state = coinCode));
 		setIsSuccess(false);
 		fetchCoin();
 	};

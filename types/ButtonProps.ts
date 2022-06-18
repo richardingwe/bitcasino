@@ -1,6 +1,7 @@
 import { CoinDataType } from "./CoinDataType";
 
 export type ButtonProps = {
+	label: string;
 	code: string;
 	loading: boolean;
 	onClick: (event: React.MouseEvent<HTMLElement>) => void;
